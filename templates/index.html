@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A local semantic photo search powered by OpenCLIP.">
+  <title>OpenCLIP / Photo Index</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="eyebrow">LOCAL IMAGE INDEX / OPENCLIP</div>
+    <div class="mast-grid">
+      <h1>Find the image<br><em>you meant.</em></h1>
+      <div class="intro">
+        <p>Semantic search over your existing <code>photos/</code> folder. No filenames required.</p>
+        <p class="mono">ViT-B/32 · cosine similarity</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="control-grid" aria-label="Photo search controls">
+      <form id="searchForm" class="search-block">
+        <label for="query">Search the index</label>
+        <div class="search-row">
+          <input id="query" name="query" type="search"
+                 placeholder="e.g. a dog playing outside"
+                 autocomplete="off">
+          <button type="submit">Search</button>
+        </div>
+        <button id="clearBtn" class="text-button" type="button">Show all photos</button>
+      </form>
+
+      <div class="embed-block">
+        <div>
+          <span class="label">INDEX</span>
+          <strong id="indexStatus">Checking…</strong>
+        </div>
+        <button id="embedBtn" class="embed-button" type="button">
+          <span>Embed photos</span><span aria-hidden="true">↗</span>
+        </button>
+        <p id="embedMessage">Rebuild the image embeddings after adding new photos.</p>
+      </div>
+    </section>
+
+    <section class="results-head">
+      <div>
+        <span class="label">RESULTS</span>
+        <h2 id="resultsTitle">All photos</h2>
+      </div>
+      <div id="resultCount" class="result-count">—</div>
+    </section>
+
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+    <section id="gallery" class="gallery" aria-label="Photo gallery"></section>
+  </main>
+
+  <footer>
+    <span>OPENCLIP PHOTO SEARCH</span>
+    <span class="mono">LOCAL / PRIVATE / EMBEDDING-BASED</span>
+  </footer>
+
+  <dialog id="lightbox">
+    <button id="closeLightbox" class="close-button" aria-label="Close image">×</button>
+    <img id="lightboxImage" alt="">
+    <p id="lightboxCaption"></p>
+  </dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

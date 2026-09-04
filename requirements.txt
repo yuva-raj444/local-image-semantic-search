@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+pydantic
+torch
+torchvision
+numpy
+Pillow
+git+https://github.com/openai/CLIP.git
